@@ -36,10 +36,12 @@ function resetInputField(elem) {
   input.value = '';
 }
 
+//function to validate the value in the input field
 function validateInput(elem) {
   const input = elem.target;
   const inputValue = input.value.trim();
 
+  //validating if the entered value is a number 
   if (inputValue !== '' && !isNaN(Number(inputValue))) {
     input.classList.remove('c-numeric-input--error');
     input.classList.add('c-numeric-input--valid');
@@ -50,6 +52,7 @@ function validateInput(elem) {
     displayError(input, 'Invalid input');
   }
 
+  //code to correct the format of the value entered
   if (inputValue !== 0 && inputValue.startsWith('0') && ! inputValue.startsWith('0.')){
     input.value = inputValue.replace(/^0+/, '');
   }
@@ -60,6 +63,7 @@ function validateInput(elem) {
 
 }
 
+//function to create a span class for displaying error message
 function displayError(input, message) {
   const errorMsg = document.createElement('span');
   errorMsg.className = 'c-numeric-input__error-msg';
@@ -67,6 +71,7 @@ function displayError(input, message) {
   input.parentNode.appendChild(errorMsg);
 }
 
+//function to remove the span class added for displaying error message
 function removeError(input) {
   const errorMsg = input.parentNode.querySelector('.c-numeric-input__error-msg');
   if (errorMsg) {
