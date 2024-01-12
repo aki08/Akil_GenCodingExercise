@@ -28,6 +28,7 @@ const NumericInput = {
 };
 document.addEventListener('DOMContentLoaded', NumericInput.init);
 
+//fuction to remove all the classes added as part of validation
 function resetInputField(elem) {
   const input = elem.target;
   input.classList.remove('c-numeric-input--error', 'c-numeric-input--valid');
