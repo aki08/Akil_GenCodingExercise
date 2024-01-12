@@ -21,8 +21,54 @@
 const NumericInput = {
   init: () => {
     document.querySelectorAll('.c-numeric-input').forEach(elem => {
-      console.log('TODO: Please see the above requirement for numeric input');
+      elem.addEventListener('focus', resetInputField);
+      elem.addEventListener('blur', validateInput)
     });
   }
 };
 document.addEventListener('DOMContentLoaded', NumericInput.init);
+
+function resetInputField(elem) {
+  const input = elem.target;
+  input.classList.remove('c-numeric-input--error', 'c-numeric-input--valid');
+  removeError(input);
+  input.value = '';
+}
+
+function validateInput(elem) {
+  const input = elem.target;
+  const inputValue = input.value.trim();
+
+  if (inputValue !== '' && !isNaN(Number(inputValue))) {
+    input.classList.remove('c-numeric-input--error');
+    input.classList.add('c-numeric-input--valid');
+  } else {
+    input.classList.remove('c-numeric-input--valid');
+    input.classList.add('c-numeric-input--error');
+    input.value = '';
+    displayError(input, 'Invalid input');
+  }
+
+  if (inputValue !== 0 && inputValue.startsWith('0') && ! inputValue.startsWith('0.')){
+    input.value = inputValue.replace(/^0+/, '');
+  }
+
+  if(inputValue.startsWith('.')){
+    input.value = '0' + inputValue;
+  }
+
+}
+
+function displayError(input, message) {
+  const errorMsg = document.createElement('span');
+  errorMsg.className = 'c-numeric-input__error-msg';
+  errorMsg.textContent = message;
+  input.parentNode.appendChild(errorMsg);
+}
+
+function removeError(input) {
+  const errorMsg = input.parentNode.querySelector('.c-numeric-input__error-msg');
+  if (errorMsg) {
+    errorMsg.parentNode.removeChild(errorMsg);
+  }
+}
