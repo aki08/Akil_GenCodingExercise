@@ -1,3 +1,5 @@
+/* CSS to add styling according to the class appened to the input field */
+
 .c-numeric-input--error {
   border: 2px solid red;
 }

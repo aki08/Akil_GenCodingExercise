@@ -20,15 +20,16 @@ const View = {
       .getElementById("shopping-cart-tbl")
       .querySelector("tbody");
 
-    //fectching data present in the cart
+    // Fectching data present in the cart
     const cartResponse = await fetch("http://localhost:4002/cart");
     const cartData = await cartResponse.json();
 
-    //fetching the product details
+    // Fetching the product details
     const productResponse = await fetch("http://localhost:4002/products");
     const productData = await productResponse.json();
 
-    //Mapping the product id in the cart with product id in the product dB to identify the products picked by customer
+    // Mapping the product id in the cart with product id in the product dB to
+    // identify the products picked by customer
     const cartItems = cartData.map((cartItem) => {
       const productId = cartItem.id;
       const productDetail = productData.find(
@@ -37,7 +38,7 @@ const View = {
       return { id: productId, item: productDetail.name };
     });
 
-    //running a loop on the cartitems obatined to create the table
+    // Running a loop on the cartitems obatined to create the table
     cartItems.forEach((item) => {
       const row = document.createElement("tr");
       row.innerHTML = `<td>${item.id}</td><td>${item.item}</td>`;
