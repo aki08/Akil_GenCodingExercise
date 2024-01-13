@@ -77,7 +77,7 @@ function displayError(input, message) {
   input.parentNode.appendChild(errorMsg);
 }
 
-// Function to remove the span class added for displaying error message
+// Function to remove the span class added for displaying the error message
 function removeError(input) {
   const errorMsg = input.parentNode.querySelector(
     ".c-numeric-input__error-msg"

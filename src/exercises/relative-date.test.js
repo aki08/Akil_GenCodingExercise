@@ -1,7 +1,7 @@
 import { calculateRelativeDate } from "./relative-date";
 import { expect } from "@open-wc/testing";
 
-// Test cases writtten for Last Year, This Week, Today & last Month
+// Test cases written for Last Year, This Week, Today & last Month
 describe("Calculate Relative Date", () => {
   it("Last Year", () => {
     const input = new Date(2023, 1, 1);

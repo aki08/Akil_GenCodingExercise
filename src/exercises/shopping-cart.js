@@ -28,7 +28,7 @@ const View = {
     const productResponse = await fetch("http://localhost:4002/products");
     const productData = await productResponse.json();
 
-    // Mapping the product id in the cart with product id in the product dB to
+    // Mapping the product id in the cart with product id in the product dataBase to
     // identify the products picked by customer
     const cartItems = cartData.map((cartItem) => {
       const productId = cartItem.id;

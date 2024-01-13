@@ -14,11 +14,11 @@
  * */
 
 const calculateRelativeDate = (inputDate) => {
-  //Creating date object
+  // Creating date object
   const date = new Date();
   const enteredDate = new Date(inputDate);
 
-  //Adjusting date to remove irregularities with time
+  // Adjusting date to remove irregularities with time
   const adjustedDate = new Date(
     date.getFullYear(),
     date.getMonth(),
@@ -31,8 +31,8 @@ const calculateRelativeDate = (inputDate) => {
     enteredDate.getDate()
   );
 
-  //Conditions to check the various cases (today, yesterday, last month..)
-  //Checking with time as directly comparing date objects leads to reference erros
+  // Conditions to check the various cases (today, yesterday, last month..)
+  // Checking with time as directly comparing date objects leads to reference erros
   if (adjustedDate.getTime() === adjustedEnteredDate.getTime()) {
     return `Today`;
   } else if (
@@ -57,36 +57,36 @@ const calculateRelativeDate = (inputDate) => {
   return `Long time ago`;
 };
 
-//Declaring one day and current date object globally
+// Declaring one day and current date object globally
 const oneDay = 24 * 60 * 60 * 1000;
 const currentDate = new Date();
 
 function thisWeek(date1, date2) {
-  //Calculate the start of the week for each date
+  // Calculate the start of the week for each date
   const startOfWeek1 = new Date(date1);
   startOfWeek1.setDate(date1.getDate() - date1.getDay());
 
   const startOfWeek2 = new Date(date2);
   startOfWeek2.setDate(date2.getDate() - date2.getDay());
 
-  //Check if both dates fall within the same week
+  // Check if both dates fall within the same week
   return Math.abs(startOfWeek1 - startOfWeek2) < 7 * oneDay;
 }
 
 function lastWeek(date) {
-  //Calculate the start of the current week and the start of the week before
+  // Calculate the start of the current week and the start of the week before
   const startOfThisWeek = new Date();
   startOfThisWeek.setDate(startOfThisWeek.getDate() - startOfThisWeek.getDay());
 
   const startOfLastWeek = new Date(startOfThisWeek);
   startOfLastWeek.setDate(startOfLastWeek.getDate() - 7);
 
-  //Check if the given date falls within the last week
+  // Check if the given date falls within the last week
   return date >= startOfLastWeek && date < startOfThisWeek;
 }
 
 function thisMonth(date) {
-  //Check if year and month of the entered date and current date are same
+  // Check if year and month of the entered date and current date are same
   return (
     date.getFullYear() === currentDate.getFullYear() &&
     date.getMonth() === currentDate.getMonth()
@@ -94,11 +94,11 @@ function thisMonth(date) {
 }
 
 function lastMonth(date) {
-  //Setting the lastMonth by picking the current date month and reducing it by 1
+  // Setting the lastMonth by picking the current date month and reducing it by 1
   const lastMonth = new Date(currentDate);
   lastMonth.setMonth(currentDate.getMonth() - 1);
 
-  //Check if given date month match lastMonth date
+  // Check if given date month match lastMonth date
   return (
     date.getFullYear() === lastMonth.getFullYear() &&
     date.getMonth() === lastMonth.getMonth()
